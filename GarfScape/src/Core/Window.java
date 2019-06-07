@@ -23,7 +23,7 @@ public class Window
     {
         this.width = width;
         this.height = height;
-        
+
         if (!glfwInit())
         {
             throw new IllegalStateException("Unable to initialize GLFW");
@@ -65,10 +65,13 @@ public class Window
                 GL.createCapabilities();
 
                 glEnable(GL_DEPTH_TEST);
-                
-                
-                
 
+                glfwSetWindowSizeCallback(windowPointer, (window, w, h) ->
+                {
+                    glViewport(0, 0, w, h);
+                    this.width = w;
+                    this.height = h;
+                });
             }
         }
 
