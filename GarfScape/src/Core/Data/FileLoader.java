@@ -6,7 +6,7 @@ import java.io.File;
 
 public class FileLoader 
 {
-    private static final String resourceRoot = "res/";
+    private static final String resourceRoot = "src/res/";
     
     public static File loadFile(String fileName)
     {

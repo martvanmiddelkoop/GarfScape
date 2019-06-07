@@ -6,6 +6,7 @@
 package garfscape;
 
 import Core.Data.Mesh;
+import Core.Data.Shader;
 import Core.Window;
 
 public class GarfScape
@@ -26,13 +27,17 @@ public class GarfScape
         {
             0, 1, 2
         };
+        
+        Shader shader = new Shader("Shaders/Sprite.shader");
 
         Mesh mesh = new Mesh(positions, indicies);
         while (window.isActive())
         {
             window.prepare();
-
+            
+            shader.bind();
             mesh.draw();
+            shader.unBind();
 
             window.update();
 
