@@ -1,4 +1,5 @@
 package Core.Data;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -30,6 +31,13 @@ public class Mesh
         storeData(2, 3, normals);
         storeIdicies(indicies);
 
+    }
+
+    public Mesh(float[] positions, float[] textureCoords, int[] indicies)
+    {
+        storeData(0, 3, positions);
+        storeData(1, 2, textureCoords);
+        storeIdicies(indicies);
     }
 
     public Mesh(float[] positions, int[] indicies)

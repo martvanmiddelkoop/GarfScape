@@ -1,9 +1,14 @@
 package Core.Data;
 
 import java.io.FileNotFoundException;
+import java.nio.FloatBuffer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import org.joml.Matrix4f;
+import org.joml.Vector2f;
+import org.joml.Vector3f;
+import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.ARBShaderObjects;
 import org.lwjgl.opengl.GL11;
 import static org.lwjgl.opengl.GL11.GL_FALSE;
@@ -91,6 +96,18 @@ public class Shader
             defines.put("$_NORMALS", "_IN_NORMALS");
             defines.put("$_POSITIONS", "_IN_POS");
             defines.put("$_TEX_COORDS", "_IN_TEX_COORDS");
+
+            defines.put("$_DEF_IMAGE", "uniform sampler2D _IMAGE;");
+            defines.put("$_DEF_IMAGE_OFFSET", "uniform vec2 _IMAGE_OFFSET = vec2(0,0);");
+            defines.put("$_DEF_IMAGE_ROWS", "uniform int _IMAGE_ROWS = 1;");
+            defines.put("$_DEF_IMAGE_WIDTH", "uniform int _IMAGE_WIDTH = 1;");
+            defines.put("$_DEF_IMAGE_HEIGHT", "uniform int _IMAGE_HEIGHT = 1;");
+
+            defines.put("$_IMAGE", "_IMAGE");
+            defines.put("$_IMAGE_OFFSET", "_IMAGE_OFFSET");
+            defines.put("$_IMAGE_ROWS", "_IMAGE_ROWS");
+            defines.put("$_IMAGE_WIDTH", "_IMAGE_WIDTH");
+            defines.put("$_IMAGE_HEIGHT", "_IMAGE_HEIGHT ");
 
             isInit = true;
         }
@@ -186,5 +203,51 @@ public class Shader
         }
 
         return reconstruct;
+    }
+
+    private int getLocation(String loactionName)
+    {
+        return GL20.glGetUniformLocation(programID, loactionName);
+    }
+
+    public void setUniformI(String uniName, int value)
+    {
+        int location = getLocation(uniName);
+        GL20.glUniform1i(location, value);
+    }
+
+    public void setUniformVec2(String uniName, Vector2f value)
+    {
+        int location = getLocation(uniName);
+        GL20.glUniform2f(location, value.x, value.y);
+    }
+
+    public void setUniformVec2(String uniName, float x, float y)
+    {
+        int location = getLocation(uniName);
+        GL20.glUniform2f(location, x, y);
+    }
+
+    public void setUniformVec3(String uniName, Vector3f value)
+    {
+        int location = getLocation(uniName);
+        GL20.glUniform3f(location, value.x, value.z, value.z);
+
+    }
+
+    public void setUniformVec3(String uniName, float x, float y, float z)
+    {
+        int location = getLocation(uniName);
+        GL20.glUniform3f(location, x, y, z);
+    }
+
+    private FloatBuffer matrixBuffer = BufferUtils.createFloatBuffer(16);
+
+    public void setUniformMat4(String uniName, Matrix4f value)
+    {
+        int location = getLocation(uniName);
+
+        value.get(matrixBuffer);
+        GL20.glUniformMatrix4fv(location, false, matrixBuffer);
     }
 }

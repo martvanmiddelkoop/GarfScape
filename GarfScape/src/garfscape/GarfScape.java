@@ -5,9 +5,9 @@
  */
 package garfscape;
 
-import Core.Data.Mesh;
-import Core.Data.Shader;
+import Core.Data.*;
 import Core.Window;
+import org.joml.Vector4f;
 
 public class GarfScape
 {
@@ -15,29 +15,46 @@ public class GarfScape
     public static void main(String[] args)
     {
         Window window = new Window("Garfscape", 1280, 720);
+        window.setClearColor(new Vector4f(0.1f, 0.1f, 0.2f, 1));
 
         float[] positions =
         {
-            -1.0f, -1.0f, 0.0f,
-            1.0f, -1.0f, 0.0f,
-            0.0f, 1.0f, 0.0f,
+
+            -0.5f, 0.5f, 0f, // Left top         ID: 0
+            -0.5f, -0.5f, 0f, // Left bottom      ID: 1
+            0.5f, -0.5f, 0f, // Right bottom     ID: 2
+            0.5f, 0.5f, 0f  // Right left       ID: 3
+        };
+
+        float[] textureCoords =
+        {
+            0, 0,
+            0, 1,
+            1, 1,
+            1, 0
         };
 
         int[] indicies =
         {
-            0, 1, 2
+            0, 1, 2,
+            0, 2, 3,
         };
-        
-        Shader shader = new Shader("Shaders/Sprite.shader");
 
-        Mesh mesh = new Mesh(positions, indicies);
+        Shader shader = new Shader("Shaders/Sprite.shader");
+        
+        TextureAtlas atlas = new TextureAtlas("Img/TestAtlas.png", 2);
+        Texture texture = new Texture(atlas, 1, 0, 1, 1);
+
+        Mesh mesh = new Mesh(positions, textureCoords, indicies);
+
         while (window.isActive())
         {
             window.prepare();
-            
+
             shader.bind();
+            texture.bind(shader);
+
             mesh.draw();
-            shader.unBind();
 
             window.update();
 
