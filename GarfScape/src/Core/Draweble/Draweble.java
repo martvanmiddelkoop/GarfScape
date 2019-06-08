@@ -1,8 +1,7 @@
 package Core.Draweble;
 
-import Core.Data.Mesh;
 import Core.Data.Shader;
-import Core.Window;
+import Core.Math.Transform;
 
 public abstract class Draweble
 {
@@ -14,5 +13,5 @@ public abstract class Draweble
         this.shader = shader;
     }
 
-    public abstract void draw(Window window);
+    public abstract void draw(float windowW, float windowH);
 }

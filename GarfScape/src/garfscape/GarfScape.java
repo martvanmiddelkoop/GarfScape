@@ -7,7 +7,7 @@ package garfscape;
 
 import Core.Data.*;
 import Core.Draweble.Sprite2D;
-import Core.Window;
+import Core.*;
 import org.joml.Vector4f;
 
 public class GarfScape
@@ -15,33 +15,19 @@ public class GarfScape
 
     public static void main(String[] args)
     {
-        Window window = new Window("Garfscape", 1280, 720);
-        window.setClearColor(new Vector4f(0.1f, 0.1f, 0.2f, 1));
-
-        Shader shader = new Shader("Shaders/Sprite.shader");
-
+        RenderContext ctx = new RenderContext(new Window("GarfScape", 1280, 720));
+        
         TextureAtlas atlas = new TextureAtlas("Img/TestAtlas.png", 2);
-        Texture texture = new Texture(atlas, 1, 1, 1, 1);
-
-        Sprite2D sprite = new Sprite2D();
-        sprite.setShader(shader);
-        sprite.setTexture(texture);
+        Shader spriteShader = new Shader("Shader/Sprite.shader");
+        
+        Sprite2D sprite = new Sprite2D(new Texture(atlas, 0, 0, 1, 1), spriteShader);
         sprite.getTransform().getPosition().x += 100;
         sprite.getTransform().getPosition().y += 100;
-        sprite.setWidth(100);
-        sprite.setHeight(100);
-
-        while (window.isActive())
-        {
-            window.prepare();
-
-            sprite.draw(window);
-
-            window.update();
-
-        }
-
-        window.destroy();
+        
+        ctx.add(sprite, LayerIndex.Scene);
+        
+        
+        while(ctx.update());
     }
 
 }
