@@ -1,26 +1,15 @@
 package Core.Draweble;
 
-import org.joml.Vector2f;
+import Core.Math.Transform2D;
 
 
 
 public abstract class Draweble2D extends Draweble
 {
-    protected Vector2f position = new Vector2f();
-    private float rotation = 0;
+    protected Transform2D transform = new Transform2D();
     
-    public Vector2f getPosition()
+    public Transform2D getTransform()
     {
-        return position;
-    }
-
-    public float getRotation()
-    {
-        return rotation;
-    }
-
-    public void setRotation(float rotation)
-    {
-        this.rotation = rotation;
+        return transform;
     }
 }

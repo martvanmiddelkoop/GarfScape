@@ -10,13 +10,15 @@ $_DEF_IMAGE_ROWS
 $_DEF_IMAGE_WIDTH
 $_DEF_IMAGE_HEIGHT
 
+$_DEF_MVP
+
 
 out vec2 a_texCoord;
 
 
 void main()
 {  
-    gl_Position = vec4($_POSITIONS, 1.0);
+    gl_Position = $_MVP * vec4($_POSITIONS, 1.0);
 
     //calculate the texture coordinates
     vec2 texScale = vec2(float($_IMAGE_ROWS) / float($_IMAGE_WIDTH), float($_IMAGE_ROWS) / float($_IMAGE_HEIGHT));

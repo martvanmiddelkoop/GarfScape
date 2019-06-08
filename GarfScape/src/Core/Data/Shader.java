@@ -108,6 +108,9 @@ public class Shader
             defines.put("$_IMAGE_ROWS", "_IMAGE_ROWS");
             defines.put("$_IMAGE_WIDTH", "_IMAGE_WIDTH");
             defines.put("$_IMAGE_HEIGHT", "_IMAGE_HEIGHT ");
+            
+            defines.put("$_DEF_MVP", "uniform mat4 _MVP;");
+            defines.put("$_MVP", "_MVP");
 
             isInit = true;
         }

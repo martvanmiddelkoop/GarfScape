@@ -166,7 +166,7 @@ public class Mesh
 
     }
 
-    public void storeData(int index, int dimentions, float[] data)
+    private void storeData(int index, int dimentions, float[] data)
     {
         bind();
 
@@ -192,7 +192,7 @@ public class Mesh
         unBind();
     }
 
-    public void storeIdicies(int[] indicies)
+    private void storeIdicies(int[] indicies)
     {
         bind();
 
