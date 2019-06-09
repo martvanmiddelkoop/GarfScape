@@ -3,6 +3,8 @@ package Core.Math;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
+//TODO: transforms optimizen
+
 public abstract class Transform
 {
 

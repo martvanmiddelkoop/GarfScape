@@ -12,6 +12,9 @@ public final class Entity
     ArrayList<Component> components = new ArrayList<>();
     ArrayList<Entity> children = new ArrayList<>();
 
+    /**
+     * @param transform the transform that will be passed to the entity >>>THIS IS PASSED BY VALUE<<<
+     */
     public Entity(Transform transform)
     {
         this.transform = transform.clone();
@@ -32,6 +35,11 @@ public final class Entity
         }
 
         return transform.sum(parent.getTransform());
+    }
+    
+    public boolean isChild()
+    {
+        return parent != null;
     }
 
     public Transform getTransform()
