@@ -5,10 +5,11 @@
  */
 package garfscape;
 
+import Core.Components.DrawebleComponent;
+import Core.Entity;
 import Core.Data.*;
 import Core.Draweble.*;
 import Core.*;
-import Core.ECS.*;
 import Core.Math.Transform2D;
 import org.joml.Vector4f;
 

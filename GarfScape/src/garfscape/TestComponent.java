@@ -1,7 +1,7 @@
 package garfscape;
 
-import Core.ECS.Component;
-import Core.ECS.Entity;
+import Core.Component;
+import Core.Entity;
 import Core.RenderContext;
 
 

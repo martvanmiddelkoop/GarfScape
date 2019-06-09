@@ -1,4 +1,4 @@
-package Core.ECS;
+package Core;
 
 import Core.Math.Transform;
 import Core.RenderContext;
@@ -13,7 +13,8 @@ public final class Entity
     ArrayList<Entity> children = new ArrayList<>();
 
     /**
-     * @param transform the transform that will be passed to the entity >>>THIS IS PASSED BY VALUE<<<
+     * @param transform the transform that will be passed to the entity >>>THIS
+     * IS PASSED BY VALUE<<<
      */
     public Entity(Transform transform)
     {
@@ -36,7 +37,7 @@ public final class Entity
 
         return transform.sum(parent.getTransform());
     }
-    
+
     public boolean isChild()
     {
         return parent != null;
@@ -57,6 +58,19 @@ public final class Entity
         for (int i = 0; i < components.size(); i++)
         {
             components.get(i).update(ctx, this);
+        }
+    }
+
+    public void draw(RenderContext ctx)
+    {
+        for (int i = 0; i < children.size(); i++)
+        {
+            children.get(i).draw(ctx);
+        }
+
+        for (int i = 0; i < components.size(); i++)
+        {
+            components.get(i).draw(ctx, this);
         }
     }
 

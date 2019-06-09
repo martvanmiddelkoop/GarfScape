@@ -1,5 +1,7 @@
-package Core.ECS;
+package Core.Components;
 
+import Core.Component;
+import Core.Entity;
 import Core.Draweble.Draweble;
 import Core.RenderContext;
 
@@ -16,7 +18,7 @@ public class DrawebleComponent extends Component
     }
     
     @Override
-    public void update(RenderContext ctx, Entity entity)
+    public void draw(RenderContext ctx, Entity entity)
     {
         draweble.draw(entity.getWorldTransform(), ctx.getWindow().getWidth(), ctx.getWindow().getHeight());
     }

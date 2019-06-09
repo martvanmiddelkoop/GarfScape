@@ -1,7 +1,6 @@
 package Core;
 
 import Core.Draweble.Draweble;
-import Core.ECS.Entity;
 import Core.Math.Transform;
 import java.time.Duration;
 import java.time.Instant;
@@ -28,12 +27,12 @@ public class RenderContext
 
     private Instant start;
     double lastDeltaTime = 0;
-    
+
     public void start()
     {
         start = Instant.now();
     }
-    
+
     public void stop()
     {
         start = null;
@@ -52,13 +51,22 @@ public class RenderContext
             return false;
         }
 
+        for (int layer = layers.length - 1; layer >= 0; layer--)
+        {
+
+            for (int i = 0; i < layers[layer].size(); i++)
+            {
+                layers[layer].get(i).update(this);
+            }
+        }
+
         for (int layer = 0; layer < layers.length; layer++)
         {
             GL11.glClear(GL_DEPTH_BUFFER_BIT);
 
             for (int i = 0; i < layers[layer].size(); i++)
             {
-                layers[layer].get(i).update(this);
+                layers[layer].get(i).draw(this);
             }
         }
 
