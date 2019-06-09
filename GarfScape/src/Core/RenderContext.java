@@ -1,6 +1,7 @@
 package Core;
 
 import Core.Draweble.Draweble;
+import Core.ECS.Entity;
 import Core.Math.Transform;
 import java.util.ArrayList;
 import org.lwjgl.opengl.GL11;
@@ -10,8 +11,8 @@ public class RenderContext
 {
 
     Window window;
-    ArrayList<Draweble>[] layers = (ArrayList<Draweble>[]) new ArrayList[LayerIndex.values().length];
-    Transform camera = new Transform();
+    ArrayList<Entity>[] layers = (ArrayList<Entity>[]) new ArrayList[LayerIndex.values().length];
+    //Transform camera = new Transform();
     
     public RenderContext(Window window)
     {
@@ -38,7 +39,7 @@ public class RenderContext
 
             for (int i = 0; i < layers[layer].size(); i++)
             {
-                layers[layer].get(i).draw(window.getWidth(), window.getHeight());
+                layers[layer].get(i).update(this);
             }
         }
         
@@ -47,16 +48,21 @@ public class RenderContext
         return true;
     }
 
-    public void add(Draweble draweble, LayerIndex index)
+    public Window getWindow()
     {
-        layers[index.ordinal()].add(draweble);
+        return window;
+    }
+    
+    public void add(Entity entity, LayerIndex index)
+    {
+        layers[index.ordinal()].add(entity);
     }
 
-    public void remove(Draweble draweble)
+    public void remove(Entity entity)
     {
         for (int layer = 0; layer < layers.length; layer++)
         {
-            if (layers[layer].remove(draweble))
+            if (layers[layer].remove(entity))
             {
                 break;
             }

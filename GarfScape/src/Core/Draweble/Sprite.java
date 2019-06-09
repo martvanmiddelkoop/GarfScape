@@ -6,22 +6,19 @@ import Core.Data.Texture;
 import Core.Math.Transform;
 import Core.Window;
 
-public class Sprite2D extends Draweble2D
+public class Sprite extends Draweble
 {
 
-    private Texture texture;
+    protected Texture texture;
 
-    public Sprite2D(Texture texture, Shader shader)
+    public Sprite(Texture texture, Shader shader)
     {
         this.texture = texture;
         this.shader = shader;
-
-        setWidth(100);
-        setHeight(100);
     }
 
     @Override
-    public void draw(float windowW, float windowH)
+    public void draw(Transform transform,float windowW, float windowH)
     {
         //bind
         shader.bind();
@@ -47,38 +44,6 @@ public class Sprite2D extends Draweble2D
     public void setTexture(Texture texture)
     {
         this.texture = texture;
-    }
-
-    /**
-     * sets the x component of the scale
-     */
-    public void setWidth(float width)
-    {
-        this.transform.getScale().x = width;
-    }
-
-    /**
-     * sets the y component of the scale
-     */
-    public void setHeight(float height)
-    {
-        this.transform.getScale().y = height;
-    }
-
-    /**
-     * gets the x component of the scale
-     */
-    public float getWidth()
-    {
-        return transform.getScale().x;
-    }
-
-    /**
-     * gets the y component of the scale
-     */
-    public float getHeight()
-    {
-        return transform.getScale().y;
     }
 
     private static final Mesh pixelMesh = new Mesh(

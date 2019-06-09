@@ -6,9 +6,10 @@
 package garfscape;
 
 import Core.Data.*;
-import Core.Draweble.Sprite2D;
+import Core.Draweble.*;
 import Core.*;
-import org.joml.Vector4f;
+import Core.ECS.*;
+import Core.Math.Transform2D;
 
 public class GarfScape
 {
@@ -19,12 +20,22 @@ public class GarfScape
         
         TextureAtlas atlas = new TextureAtlas("Img/TestAtlas.png", 2);
         Shader spriteShader = new Shader("Shader/Sprite.shader");
+        Sprite sprite = new Sprite(new Texture(atlas, 0, 0, 1, 1), spriteShader);
         
-        Sprite2D sprite = new Sprite2D(new Texture(atlas, 0, 0, 1, 1), spriteShader);
-        sprite.getTransform().getPosition().x += 100;
-        sprite.getTransform().getPosition().y += 100;
         
-        ctx.add(sprite, LayerIndex.Scene);
+        Transform2D t = new Transform2D();
+        t.getScale().x = 100;
+        t.getScale().y = 100;
+        
+        Entity parent = new Entity(t);
+        parent.getTransform().getPosition().x += 50;
+        
+        Entity popke = parent.createChild(new Transform2D());
+        popke.getTransform().getPosition().y += 50;
+        
+        popke.addComponent(new DrawebleComponent(sprite));
+        
+        ctx.add(popke, LayerIndex.Scene);
         
         
         while(ctx.update());

@@ -4,7 +4,7 @@ import Core.Data.Shader;
 import Core.Data.Texture;
 import java.util.ArrayList;
 
-public class AnimatedSprite extends Sprite2D
+public class AnimatedSprite extends Sprite
 {//TODO IMPLEMENT THIS
 
     int index = 0;

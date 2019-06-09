@@ -6,6 +6,7 @@ import org.joml.Vector3f;
 public class Transform2D extends Transform
 {
 
+    @Override
     public Matrix4f getMVP(float windowWidth, float windowHeight)
     {//TODO: DIT OPTIMIZEN
 
@@ -18,5 +19,24 @@ public class Transform2D extends Transform
 
         return new Matrix4f(proj).mulAffine(model);
 
+    }
+
+    public Transform2D()
+    {
+    }
+    
+    //public Transform2D(Camera)
+    
+    public Transform2D(Transform2D other)
+    {
+        position = new Vector3f(other.position);
+        rotation = new Vector3f(other.rotation);
+        scale = new Vector3f(other.scale);
+    }
+
+    @Override
+    public Transform clone()
+    {
+        return new Transform2D(this);
     }
 }
