@@ -1,6 +1,7 @@
 package Core;
 
 import Core.Draweble.Draweble;
+import Core.Event.Input;
 import Core.Math.Transform;
 import java.time.Duration;
 import java.time.Instant;
@@ -13,11 +14,13 @@ public class RenderContext
 
     Window window;
     ArrayList<Entity>[] layers = (ArrayList<Entity>[]) new ArrayList[LayerIndex.values().length];
+    Input input;
     //Transform camera = new Transform();
 
     public RenderContext(Window window)
     {
         this.window = window;
+        input = new Input(window.getPointer());
 
         for (int layer = 0; layer < layers.length; layer++)
         {
@@ -27,6 +30,11 @@ public class RenderContext
 
     private Instant start;
     double lastDeltaTime = 0;
+    
+    public Input getInput()
+    {
+        return input;
+    }
 
     public void start()
     {
@@ -58,6 +66,8 @@ public class RenderContext
             {
                 layers[layer].get(i).update(this);
             }
+            
+            input.pushLayer();
         }
 
         for (int layer = 0; layer < layers.length; layer++)
@@ -71,6 +81,7 @@ public class RenderContext
         }
 
         window.update();
+        input.reset();
 
         return true;
     }

@@ -19,7 +19,7 @@ public class Text extends Draweble
 
     static
     {
-        font[0] = new Texture(fontAtlas, 0, 0, 1, 1);
+        font[0] = new Texture(fontAtlas, 7, 9, 1, 1);
         font[(int) 'A'] = new Texture(fontAtlas, 3, 3, 1, 1);
         font[(int) 'B'] = new Texture(fontAtlas, 4, 3, 1, 1);
         font[(int) 'C'] = new Texture(fontAtlas, 5, 3, 1, 1);
@@ -46,11 +46,27 @@ public class Text extends Draweble
         font[(int) 'X'] = new Texture(fontAtlas, 6, 5, 1, 1);
         font[(int) 'Y'] = new Texture(fontAtlas, 7, 5, 1, 1);
         font[(int) 'Z'] = new Texture(fontAtlas, 8, 5, 1, 1);
+        
+        font[(int) '1'] = new Texture(fontAtlas, 7, 1, 1, 1);
+        font[(int) '2'] = new Texture(fontAtlas, 8, 1, 1, 1);
+        font[(int) '3'] = new Texture(fontAtlas, 9, 1, 1, 1);
+        font[(int) '4'] = new Texture(fontAtlas, 0, 2, 1, 1);
+        font[(int) '5'] = new Texture(fontAtlas, 1, 2, 1, 1);
+        font[(int) '6'] = new Texture(fontAtlas, 2, 2, 1, 1);
+        font[(int) '7'] = new Texture(fontAtlas, 3, 2, 1, 1);
+        font[(int) '8'] = new Texture(fontAtlas, 4, 2, 1, 1);
+        font[(int) '9'] = new Texture(fontAtlas, 5, 2, 1, 1);
     }
 
     public Text()
     {
         this.shader = fontShader;
+    }
+    
+    public Text(String text)
+    {
+        this.shader = fontShader;
+        this.text = text;
     }
 
     public void setText(String text)

@@ -78,6 +78,11 @@ public class Window
         }
 
     }
+    
+    public long getPointer()
+    {
+        return windowPointer;
+    }
 
     public void setTitle(String title)
     {

@@ -20,21 +20,32 @@ public class GarfScape
     {
         RenderContext ctx = new RenderContext(new Window("GarfScape", 1280, 720));
         ctx.getWindow().setClearColor(new Vector4f(0.1f, 0.1f, 0.2f, 1.0f));
-
         
-        Text text = new Text();
-        text.setText("COCK AND BALL\nTORTURE");
+        Transform2D t = new Transform2D();
+        t.getScale().x = 100;
+        t.getScale().y = 100;
+        t.getPosition().y = 360;
         
         
-        Entity test = new Entity(new Transform2D());
-        test.getTransform().getScale().x = 100;
-        test.getTransform().getScale().y = 100;
-
-        test.addComponent(new DrawebleComponent(text));
-        test.addComponent(new TestComponent());
-
-        ctx.add(test, LayerIndex.Scene);
-
+        
+        
+        Entity e1 = new Entity(t);
+        Entity e2 = new Entity(t);
+        e1.getTransform().getPosition().x = 100;
+        e2.getTransform().getPosition().x = 300;
+        
+        e1.addComponent(new DrawebleComponent(new Text("1")));
+        e2.addComponent(new DrawebleComponent(new Text("2")));
+        
+        e1.addComponent(new TestComponent());
+        e2.addComponent(new TestComponent());
+        
+        
+        
+       
+        ctx.add(e1, LayerIndex.Scene);
+        ctx.add(e2, LayerIndex.UI);
+        
         ctx.start();
         while (ctx.update());
     }
