@@ -10,6 +10,7 @@ import Core.Draweble.*;
 import Core.*;
 import Core.ECS.*;
 import Core.Math.Transform2D;
+import org.joml.Vector4f;
 
 public class GarfScape
 {
@@ -17,23 +18,21 @@ public class GarfScape
     public static void main(String[] args)
     {
         RenderContext ctx = new RenderContext(new Window("GarfScape", 1280, 720));
+        ctx.getWindow().setClearColor(new Vector4f(0.1f, 0.1f, 0.2f, 1.0f));
 
-        TextureAtlas atlas = new TextureAtlas("Img/TestAtlas.png", 2);
-        Shader spriteShader = new Shader("Shader/Sprite.shader");
-        Sprite sprite = new Sprite(new Texture(atlas, 0, 0, 1, 1), spriteShader);
+        
+        Text text = new Text();
+        text.setText("COCK AND BALL\nTORTURE");
+        
+        
+        Entity test = new Entity(new Transform2D());
+        test.getTransform().getScale().x = 100;
+        test.getTransform().getScale().y = 100;
 
-        Transform2D t = new Transform2D();
-        t.getScale().x = 100;
-        t.getScale().y = 100;
+        test.addComponent(new DrawebleComponent(text));
+        test.addComponent(new TestComponent());
 
-        Entity parent = new Entity(t);
-        parent.addComponent(new TestComponent());
-
-        Entity popke = parent.createChild(new Transform2D());
-
-        popke.addComponent(new DrawebleComponent(sprite));
-
-        ctx.add(parent, LayerIndex.Scene);
+        ctx.add(test, LayerIndex.Scene);
 
         ctx.start();
         while (ctx.update());

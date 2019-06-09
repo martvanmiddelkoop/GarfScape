@@ -10,11 +10,12 @@ public class Sprite extends Draweble
 {
 
     protected Texture texture;
+    private static Shader spriteShader = new Shader("Shader/Sprite.shader");
 
-    public Sprite(Texture texture, Shader shader)
+    public Sprite(Texture texture)
     {
         this.texture = texture;
-        this.shader = shader;
+        this.shader = spriteShader;
     }
 
     @Override

@@ -12,7 +12,7 @@ public class AnimatedSprite extends Sprite
 
     public AnimatedSprite(Shader shader, ArrayList<Texture> textureArray)
     {
-        super(textureArray.get(0), shader);
+        super(textureArray.get(0));
         this.textureArray = textureArray;
     }
 
