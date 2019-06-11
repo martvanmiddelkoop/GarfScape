@@ -12,7 +12,7 @@ public abstract class Transform
     protected Vector3f rotation = new Vector3f();
     protected Vector3f scale = new Vector3f(1, 1, 1);
 
-    public abstract Matrix4f getMVP(float windowWidth, float windowHeight);
+    public abstract Matrix4f getMVP(Transform camera, float windowWidth, float windowHeight);
     public abstract Transform clone();
     
     public Transform sum(Transform right)

@@ -20,18 +20,7 @@ public class TestComponent extends Component
         KeyboardEvent ev = ctx.getInput().getKey(GLFW.GLFW_KEY_SPACE);
         if (ev != null)
         {
-            tElapsed += ctx.getDeltaTime();
-            e.getTransform().getRotation().z += ctx.getDeltaTime() * 360;
-            ctx.getInput().discardKeyEvent(ev);
-            
-            MouseMoveEvent me = ctx.getInput().getMouseMove();
-            
-            if(me != null)
-            {
-                e.getTransform().getPosition().x = me.getMouseX();
-                e.getTransform().getPosition().y = me.getMouseY();
-                ctx.getInput().discardMouseMove();
-            }
+            e.getTransform().getPosition().x += ctx.getDeltaTime() * 100;
         }
     }
 }

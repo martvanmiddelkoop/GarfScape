@@ -5,7 +5,6 @@ import Core.Data.Shader;
 import Core.Data.Texture;
 import Core.Math.Transform;
 import Core.Window;
-
 public class Sprite extends Draweble
 {
 
@@ -19,14 +18,14 @@ public class Sprite extends Draweble
     }
 
     @Override
-    public void draw(Transform transform,float windowW, float windowH)
+    public void draw(Transform transform, Transform camera, float windowW, float windowH)
     {
         //bind
         shader.bind();
         getTexture().bind(shader);
 
         //set data
-        shader.setUniformMat4("_MVP", transform.getMVP(windowW, windowH));
+        shader.setUniformMat4("_MVP", transform.getMVP(camera, windowW, windowH));
 
         //draw
         pixelMesh.draw();

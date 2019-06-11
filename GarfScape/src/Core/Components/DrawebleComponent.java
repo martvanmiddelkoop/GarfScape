@@ -20,6 +20,6 @@ public class DrawebleComponent extends Component
     @Override
     public void draw(RenderContext ctx, Entity entity)
     {
-        draweble.draw(entity.getWorldTransform(), ctx.getWindow().getWidth(), ctx.getWindow().getHeight());
+        draweble.draw(entity.getWorldTransform(), ctx.getCamera().getWorldTransform(), ctx.getWindow().getWidth(), ctx.getWindow().getHeight());
     }
 }

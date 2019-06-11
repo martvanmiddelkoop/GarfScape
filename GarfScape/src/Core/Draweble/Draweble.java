@@ -13,5 +13,5 @@ public abstract class Draweble
         this.shader = shader;
     }
 
-    public abstract void draw(Transform transform, float windowW, float windowH);
+    public abstract void draw(Transform transform, Transform camera, float windowW, float windowH);
 }

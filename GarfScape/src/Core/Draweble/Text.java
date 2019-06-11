@@ -80,7 +80,7 @@ public class Text extends Draweble
     }
 
     @Override
-    public void draw(Transform transform, float windowW, float windowH)
+    public void draw(Transform transform, Transform camera, float windowW, float windowH)
     {
         shader.bind();
         Transform t = transform.clone();
@@ -98,7 +98,7 @@ public class Text extends Draweble
                     font[0].bind(shader);
                 }
 
-                shader.setUniformMat4("_MVP", t.getMVP(windowW, windowH));
+                shader.setUniformMat4("_MVP", t.getMVP(camera, windowW, windowH));
                 pixelMesh.draw();
                 t.getPosition().x += t.getScale().x * spaceMultiplier;
             }

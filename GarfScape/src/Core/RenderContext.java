@@ -15,7 +15,7 @@ public class RenderContext
     Window window;
     ArrayList<Entity>[] layers = (ArrayList<Entity>[]) new ArrayList[LayerIndex.values().length];
     Input input;
-    //Transform camera = new Transform();
+    private Entity camera;
 
     public RenderContext(Window window)
     {
@@ -117,5 +117,15 @@ public class RenderContext
                 break;
             }
         }
+    }
+
+    public Entity getCamera()
+    {
+        return camera;
+    }
+
+    public void setCamera(Entity camera)
+    {
+        this.camera = camera;
     }
 }
