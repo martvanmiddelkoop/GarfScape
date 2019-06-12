@@ -27,6 +27,16 @@ public final class Entity
         this.transform = transform.clone();
     }
 
+    public <T> T getComponent()
+    {
+
+        for (int i = 0; i < components.size(); i++)
+        {
+        }
+
+        return null;
+    }
+
     public Transform getWorldTransform()
     {
 

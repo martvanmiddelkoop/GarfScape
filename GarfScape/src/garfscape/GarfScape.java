@@ -10,6 +10,8 @@ import Core.Entity;
 import Core.Data.*;
 import Core.Draweble.*;
 import Core.*;
+import Core.Components.BoxCollider2D;
+import Core.Components.RigidBody2D;
 import Core.Math.Transform2D;
 import org.joml.Vector4f;
 
@@ -35,12 +37,17 @@ public class GarfScape
         Entity entity = new Entity(t);
         
         entity.addComponent(new DrawebleComponent(new Sprite(new Texture(atlas, 1, 0, 1, 1))));
-        Entity cam = entity.createChild(help);
-        cam.addComponent(new TestComponent());
+        entity.addComponent(new RigidBody2D());
         
-        ctx.setCamera(cam);
+        Entity collider = new Entity(t);
+        collider.getTransform().getPosition().y -= 200;
+        collider.addComponent(new BoxCollider2D());
+        collider.addComponent(new DrawebleComponent(new Sprite(new Texture(atlas, 0, 0, 1, 1))));
+        
+        ctx.setCamera(new Entity(t));
         
         ctx.add(entity, LayerIndex.Scene);
+        ctx.add(collider, LayerIndex.Scene);
         
         
         
